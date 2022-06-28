@@ -1,0 +1,21 @@
+Method to create table and database
+
+1. Open python shell/cmd
+>> from blog import db
+>> db.create_all()
+
+Create resources
+>> admin = User(username="maarufb", email="maarufburad1231@gmail.com")
+>> guest = User(username="michaelJ", email="michaelJ@gmail.com")
+
+The command above is not yet saved to the database
+>> db.session.add(admin)
+>> db.session.add(guest)
+>> db.session.commit()
+
+Accessing the data from the database
+>> User.query.all()
+output: [<User u'admin'>, <User u'guest'>]
+>> User.query.filter_by(username="maarufb")
+output: <User u'admin'>
+
