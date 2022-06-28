@@ -43,7 +43,7 @@ async def blog(id):
             print(f"items: {i}")
         result.title = data["title"]
         result.body = data["body"]
-        
+
         db.session.commit()
 
         schema = PostSchema()
