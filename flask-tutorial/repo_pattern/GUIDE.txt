@@ -1,0 +1,6 @@
+# GUIDE ON HOW TO PUSH YOUR IMAGE TO A DOCKER Repository
+
+1. docker images
+    - get the tag image
+2. docker tag image:latest username/dockerrepo
+3. docker push username/dockerrepo:lates
