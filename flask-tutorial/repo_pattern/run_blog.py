@@ -1,7 +1,7 @@
 from blog import app
-import redis
+# import redis
 
-cache = redis.Redis(host="redis", port=6379)
+# cache = redis.Redis(host="redis", port=6379)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port="8000")

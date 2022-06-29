@@ -3,12 +3,14 @@ FROM python
 WORKDIR /code
 ENV FLASK_APP=run_blog.py
 ENV FLASK_RUN_HOST=0.0.0.0
-# RUN apk add --no-cache gcc musl-dev linux-headers
 COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+RUN python -m pip install -r requirements.txt
 EXPOSE 5000
 COPY . .
 CMD ["flask", "run"]
+
+
+# RUN hypercorn blog:asgi_app
 
 # Build an image starting with the Python 3.7 image.
 # Set the working directory to /code.

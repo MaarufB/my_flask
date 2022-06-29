@@ -33,25 +33,33 @@ async def blog(id):
 
     if request.method == "GET":
         result = await post.get_async(id)
-        schema = PostSchema()
-        return schema.dump(result)
+        if result != None:
+            schema = PostSchema()
+            return schema.dump(result)
 
+        return {"message": "data is no longer exist"}
+    
     elif request.method == "PUT":
         result = await post.get_async(id)
-        data = request.json
-        for i in result:
-            print(f"items: {i}")
-        result.title = data["title"]
-        result.body = data["body"]
+        
+        if result != None:
+            data = request.json
+            result.title = data["title"]
+            result.body = data["body"]
+            db.session.commit()
+            schema = PostSchema()
 
-        db.session.commit()
+            return schema.dump(result)
 
-        schema = PostSchema()
-
-        return schema.dump(result)
+        return {"message": "Data is no longer exist!"}
 
     elif request.method == "DELETE":
-        result = await post.delete_async(id)
-        return result
+        check_if_exist = await post.get_async(id)
+
+        if (check_if_exist != None):
+            result = await post.delete_async(id)
+            return result
+
+        return {"message": "data is no longer exist!"}
 
     return {"message": "Bad Request"}

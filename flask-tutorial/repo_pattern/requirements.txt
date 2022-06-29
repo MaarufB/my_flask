@@ -1,4 +1,6 @@
 flask[async]
 flask-marshmallow
 Flask-SQLAlchemy
-redis
+marshmallow-sqlalchemy
+# hypercorn
+# redis
